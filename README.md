@@ -1,41 +1,20 @@
-# 54 - Documentación por vídeo
+# 54 - Curso de React.js (Platzi)
 
-Este archivo contiene la documentación por vídeo del curso "Introducción a React.js" (Platzi). Aquí solo se mantendrá el registro estructurado de cada vídeo/commit: título del vídeo, mensaje exacto del commit, archivos modificados y una breve explicación.
+Breve: código y registro del curso "Introducción a React.js". Aquí se documenta cada vídeo en este mismo archivo (entrada corta por vídeo).
 
-Formato que usaremos para cada entrada:
-
-### {N} — {Título del vídeo}
-
-- Mensaje de commit: "{mensaje exacto usado en el commit}"
-- Archivos modificados:
-  - `ruta/archivo` — breve nota
-  - `otra/ruta` — breve nota
-- Resumen: Breve explicación de lo que se hizo y por qué.
-- Fecha: {YYYY-MM-DD}
-
-Ejemplo (video 1):
-
-### 1 — ¿Qué necesitas para aprender React.js?
-
-- Mensaje de commit: "1 ¿Qué necesitas para aprender React.js?"
-- Archivos modificados:
-  - `README.md` — se creó la plantilla de documentación por vídeo.
-  - `package.json`, `src/`, `public/` — archivos base del proyecto generados por Create React App.
-- Resumen: Inicialización del proyecto y añadido de la documentación inicial. Punto de partida del curso.
-- Fecha: {YYYY-MM-DD}
+## 1 — ¿Qué necesitas para aprender React.js?
+- Commit: "1 ¿Qué necesitas para aprender React.js?"
+- Fecha: 2025-10-06
+- Archivos: `README.md`, `package.json`, `src/`, `public/`
+- Resumen: Inicialización del proyecto con Create React App; estructura base lista para empezar a crear componentes (App, index, estilos y recursos).
 
 ---
 
-Cómo usar este archivo:
+Cómo ejecutar (rápido):
+1. npm install
+2. npm start (http://localhost:3000)
 
-1. Después de completar cada vídeo, añade una nueva sección siguiendo la plantilla anterior.
-2. Haz commit con el mensaje exacto del vídeo:
+Remoto: git@github.com:omarhernandezrey/54-Curso-de-React.js.git
 
-```bash
-git add -A
-git commit -m "{mensaje exacto del vídeo}"
-git push origin main
-```
-
-Si quieres, puedo añadir automáticamente las entradas ya vistas si me das la lista de títulos y mensajes de commit.
+Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está completa para el vídeo 1.
 
