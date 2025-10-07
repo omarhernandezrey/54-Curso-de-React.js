@@ -18,11 +18,12 @@ Remoto: git@github.com:omarhernandezrey/54-Curso-de-React.js.git
 
 Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está completa para el vídeo 1.
 
-## 2 — ¿Qué es un componente?
+## 2 — ¿Qué es un componente? (documentación breve)
 - Commit: "2 ¿Qué es un componente?"
 - Fecha: 2025-10-06
-- Archivos: `src/App.js`, `src/App.css`, `src/index.js`
-- Resumen: Se explican y muestran componentes en React. Se añadieron ejemplos en `App.js`: `TodoItem` (lista de tareas simple) y `Profile` (componente con props). Esta entrada debe permanecer breve: número, commit, archivos y una línea resumen.
+- Archivos mencionados: `src/App.js` (contiene ejemplos: `TodoItem`, `Omar`), `src/App.css`, `src/index.js`
+- Explicación (breve y completa):
+  Un componente en React es una función o clase que recibe entradas (props) y devuelve elementos React (JSX) para renderizar UI. Los componentes permiten dividir la interfaz en piezas reutilizables y manejar su propio estado y eventos. En `src/App.js` se muestran componentes simples: `TodoItem` (lista de tareas) y `Omar` (sección con nombre y rol). Estos sirven para entender la creación básica de componentes, el retorno de JSX y cómo componer componentes dentro de `App`.
 
 ---
 
