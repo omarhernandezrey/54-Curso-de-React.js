@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Archivo <code>src/App.js</code> — ejemplo de componentes.
+          Edita el archivo <code>src/App.js</code> y guarda para recargar.
         </p>
         <a
           className="App-link"
@@ -15,40 +15,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Curso de React en Platzi
+          Learn React
         </a>
       </header>
-
-      <section className="examples">
-        <h2>Ejemplos de componentes</h2>
-        <ul>
-          <TodoItem text="Aprender JSX" />
-          <TodoItem text="Crear componentes" />
-          <TodoItem text="Usar props" />
-        </ul>
-
-        <Profile name="Omar Hernández Rey" role="Desarrollador Web Full Stack" />
-      </section>
     </div>
-  );
-}
-
-function TodoItem({ text }) {
-  return (
-    <li className="todo-item">
-      <span className="check">✔</span>
-      <p>{text}</p>
-      <button className="remove">X</button>
-    </li>
-  );
-}
-
-function Profile({ name, role }) {
-  return (
-    <section className="profile">
-      <h3>{name}</h3>
-      <p>{role}</p>
-    </section>
   );
 }
 
