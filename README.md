@@ -42,3 +42,11 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 
 ---
 
+## 4 — ¿Cómo se comunican los componentes? Props y atributos
+- Commit: "4 ¿Cómo se comunican los componentes? Props y atributos"
+- Fecha: 2025-10-07
+- Archivos: `src/TodoItem.js`, `src/TodoList.js`, `src/App.js`
+- Resumen: Explicación breve sobre cómo los componentes se comunican mediante props y atributos: pasar datos desde padre a hijo a través de props, uso de atributos JSX, y ejemplo práctico con `TodoItem` recibiendo texto o estado desde el componente padre.
+
+---
+
