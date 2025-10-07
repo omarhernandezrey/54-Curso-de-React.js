@@ -18,3 +18,11 @@ Remoto: git@github.com:omarhernandezrey/54-Curso-de-React.js.git
 
 Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está completa para el vídeo 1.
 
+## 2 — ¿Qué es un componente?
+- Commit: "2 ¿Qué es un componente?"
+- Fecha: 2025-10-06
+- Archivos: `src/App.js`, `src/App.css`, `src/index.js`
+- Resumen: Se explican y muestran componentes en React. Se añadieron ejemplos en `App.js`: `TodoItem` (lista de tareas simple) y `Profile` (componente con props). Esta entrada debe permanecer breve: número, commit, archivos y una línea resumen.
+
+---
+
