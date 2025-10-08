@@ -51,10 +51,12 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 ---
 
 ## 5 — Estilos CSS en React
-- Commit: "5 Estilos CSS en React"
-- Fecha: 2025-10-08
-- Archivos: `src/global.css`, `src/App.css`, `src/TodoItem.css`, `src/TodoSearch.css`, `src/TodoList.css`, `src/TodoCounter.css`, `src/CreateTodoButton.css`
-- Resumen: Se añadieron y mejoraron las hojas de estilo para toda la aplicación (estética moderna, glassmorphism, gradientes y responsive). También se adaptó el marcado de `TodoItem` y se aplicaron clases para mostrar tareas completadas en verde y no completadas en blanco.
+
+## 6 — Eventos en React: onClick, onChange
+ - Commit: "6 Eventos en React: onClick, onChange"
+ - Fecha: 2025-10-08
+ - Archivos: `src/TodoSearch.js`, `src/CreateTodoButton.js`, `README.md`
+ - Resumen: Se demostraron los eventos básicos en React. En `TodoSearch.js` se captura el evento `onChange` del input y, además de los logs para fines didácticos, ahora se invoca una prop opcional `onSearchChange(value)` si el componente padre la proporciona. En `CreateTodoButton.js` el evento `onClick` del botón hace logging y, si se pasa desde el padre, llama a `props.onClick(event)` o alternativamente a `props.onCreateTodo()` — esto mantiene el cambio no invasivo y compatible con la estructura existente.
 
 ---
 
