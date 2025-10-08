@@ -50,3 +50,11 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 
 ---
 
+## 5 — Estilos CSS en React
+- Commit: "5 Estilos CSS en React"
+- Fecha: 2025-10-08
+- Archivos: `src/global.css`, `src/App.css`, `src/TodoItem.css`, `src/TodoSearch.css`, `src/TodoList.css`, `src/TodoCounter.css`, `src/CreateTodoButton.css`
+- Resumen: Se añadieron y mejoraron las hojas de estilo para toda la aplicación (estética moderna, glassmorphism, gradientes y responsive). También se adaptó el marcado de `TodoItem` y se aplicaron clases para mostrar tareas completadas en verde y no completadas en blanco.
+
+---
+

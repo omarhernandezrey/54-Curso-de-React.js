@@ -1,0 +1,2 @@
+.create-todo{position:fixed;right:28px;bottom:28px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#7c3aed,#06b6d4);box-shadow:0 10px 30px rgba(7,11,25,0.6);border:none;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.create-todo:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(7,11,25,0.65)}

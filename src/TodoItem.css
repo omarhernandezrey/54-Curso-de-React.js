@@ -1,0 +1,65 @@
+/* Modern styles for the TodoItem component (class names match the component markup) */
+.TodoItem{
+	display:flex;
+	align-items:center;
+	gap:14px;
+	padding:12px 16px;
+	border-radius:12px;
+	background: var(--glass, rgba(255,255,255,0.02));
+	border: 1px solid rgba(255,255,255,0.03);
+	transition: transform .14s, box-shadow .14s;
+}
+.TodoItem:hover{
+	transform: translateY(-6px);
+	box-shadow: 0 18px 40px rgba(2,6,23,0.45);
+}
+
+.Icon{
+	width:42px;
+	height:42px;
+	display:grid;
+	place-items:center;
+	border-radius:10px;
+	background: rgba(255,255,255,0.015);
+	border: 1px solid rgba(255,255,255,0.03);
+	color: var(--muted, #98a0b3);
+	font-weight:700;
+	cursor:pointer;
+}
+
+.Icon-check--active{
+	background: linear-gradient(135deg,#16a34a,#10b981); /* green gradient */
+	color: #fff;
+	box-shadow: 0 10px 30px rgba(16,185,129,0.12);
+	border-color: transparent;
+}
+
+.TodoItem-p{
+	margin:0;
+	flex:1;
+	font-size:15px;
+	color: #e6eef8;
+}
+
+.TodoItem-p--complete{
+	text-decoration: line-through;
+	opacity: 0.9;
+	color: var(--success, #10b981);
+}
+
+/* Non-completed default color */
+.TodoItem-p{ color: #ffffff }
+
+.Icon-delete{
+	color: var(--danger, #ef4444);
+	padding:6px 8px;
+	border-radius:8px;
+	cursor:pointer;
+	transition: background .12s;
+}
+.Icon-delete:hover{
+	background: rgba(239,68,68,0.06);
+}
+
+.TodoItem--complete .Icon{ opacity: 0.7 }
+

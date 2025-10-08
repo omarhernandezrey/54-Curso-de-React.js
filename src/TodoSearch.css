@@ -1,0 +1,29 @@
+/* Simple, valid TodoSearch styles (responsive) */
+.todo-search{
+  margin:16px 0 22px 0;
+  display:flex;
+  gap:10px;
+}
+
+.todo-search input{
+  flex:1;
+  padding:12px 14px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.03);
+  border-radius:10px;
+  color:inherit;
+  outline:none;
+  transition:box-shadow .15s, transform .08s;
+}
+
+.todo-search input::placeholder{ color:var(--muted); }
+
+.todo-search input:focus{
+  box-shadow:0 6px 20px rgba(7,11,25,0.5);
+  transform:translateY(-1px);
+  border:1px solid rgba(124,58,237,0.18);
+}
+
+@media (max-width:520px){
+  .todo-search{margin:14px 0}
+}
