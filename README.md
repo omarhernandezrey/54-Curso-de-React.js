@@ -60,3 +60,14 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 
 ---
 
+## 7 — ¿Qué es el estado?
+ - Commit: "7 ¿Qué es el estado?"
+ - Fecha: 2025-10-18
+ - Archivos modificados: `src/TodoSearch.js`
+ - Resumen: Esta entrada muestra qué es el estado en React y documenta la modificación práctica en `TodoSearch.js`. El componente ahora mantiene un estado interno `searchValue` usando `React.useState` y vincula el input al estado con `value` y `onChange`. Además se añadió un `console.log` para visualizar los cambios en tiempo real mientras se escribe.
+ - Explicación breve: El estado (state) en React es un valor que un componente puede mantener entre renders. Cuando se actualiza el estado con la función retornada por `useState`, React vuelve a renderizar el componente para reflejar los nuevos datos. En formularios, usar un input controlado (value + onChange) es la forma recomendada para sincronizar UI y estado.
+
+Notas:
+ - El cambio en `src/TodoSearch.js` fue realizado para que coincida con el ejemplo del material del curso (código literal). Si se requiere, se puede elevar el estado al componente padre para que otras partes de la aplicación (p. ej. la lista de tareas) puedan consumir el valor del search.
+
+
