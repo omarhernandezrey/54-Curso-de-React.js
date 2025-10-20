@@ -3,7 +3,11 @@ import './TodoItem.css';
 function TodoItem(props) {
   return (
     <li className={`TodoItem ${props.completed ? 'TodoItem--complete' : ''}`}>
-      <span className={`Icon Icon-check ${props.completed ? 'Icon-check--active' : ''}`}>
+      <span
+        className={`Icon Icon-check ${props.completed ? 'Icon-check--active' : ''}`}
+        onClick={props.onToggle}
+        style={{ cursor: 'pointer' }}
+      >
         {props.completed ? '✔' : '○'}
       </span>
 
@@ -11,7 +15,7 @@ function TodoItem(props) {
         {props.text}
       </p>
 
-      <span className="Icon Icon-delete">X</span>
+      <span className="Icon Icon-delete" onClick={props.onDelete} style={{ cursor: 'pointer' }}>X</span>
     </li>
   );
 }
