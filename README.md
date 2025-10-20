@@ -70,4 +70,26 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 Notas:
  - El cambio en `src/TodoSearch.js` fue realizado para que coincida con el ejemplo del material del curso (código literal). Si se requiere, se puede elevar el estado al componente padre para que otras partes de la aplicación (p. ej. la lista de tareas) puedan consumir el valor del search.
 
+---
+
+## 8 — Contando TODOs (cursor e interacción)
+ - Commit: "8 Contando TODOs"
+ - Fecha: 2025-10-20
+ - Archivos modificados: `src/App.js`, `src/TodoItem.js`, `src/TodoSearch.js`, `src/CreateTodoButton.js`, `src/TodoList.css`, `src/TodoItem.js`
+ - Resumen: En este vídeo se mostró cómo mejorar la interacción de la TODO Machine agregando comportamiento al cursor y al clic en los controles de cada tarea. Se implementó la posibilidad de completar y eliminar tareas, y se actualizó el contador de tareas completadas para que refleje el estado real.
+
+Explicación didáctica (breve):
+- Cursor interactivo: se aplicó `style={{ cursor: 'pointer' }}` a los iconos interactivos (el check y la X) para que el usuario note que puede hacer clic. Esto es una mejora de UX sencilla pero efectiva.
+- Comportamiento: el componente `TodoItem` ahora recibe `onToggle` y `onDelete` desde `App`. Al hacer click en el check se invoca `onToggle` para alternar el flag `completed` del todo; al hacer click en la X se invoca `onDelete` para eliminar el todo del arreglo en el estado del padre.
+- Conteo de TODOs: `App` mantiene `todos` en su estado con `useState(defaultTodos)` y calcula el número de completados con `const completedTodos = todos.filter(t => t.completed).length`. `TodoCounter` muestra `completedTodos` y `totalTodos`.
+
+Cambios técnicos realizados:
+- `src/App.js`: los todos se guardan en estado (`useState`), se añadieron las funciones `toggleTodo` y `deleteTodo`, y el render actualiza `TodoCounter` en base al estado real.
+- `src/TodoItem.js`: se añadieron handlers `onClick` en el check y en la X y `cursor: pointer` para indicar interactividad.
+- `src/TodoSearch.js` y `src/CreateTodoButton.js`: se ajustaron para integrarse con la nueva estructura de estado (el botón + puede ser extendido para crear nuevos todos).
+
+Consejo:
+- Para listas dinámicas en producción es preferible dar a cada todo un `id` único en lugar de usar el índice como `key`, para evitar problemas de reconciliación cuando la lista se modifica o reordena.
+
+
 
