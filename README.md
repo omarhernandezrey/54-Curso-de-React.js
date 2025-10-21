@@ -113,5 +113,9 @@ Cambios técnicos realizados:
 Beneficio:
 - UX más clara y atractiva, búsqueda instantánea y visual profesional.
 
+Captura de pantalla:
+![Buscador centrado con lupa y filtro activo](./captura-buscador.png)
+Así se ve el buscador centrado, con lupa y filtrando tareas en tiempo real.
+
 
 
