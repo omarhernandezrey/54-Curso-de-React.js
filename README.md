@@ -91,5 +91,27 @@ Cambios técnicos realizados:
 Consejo:
 - Para listas dinámicas en producción es preferible dar a cada todo un `id` único en lugar de usar el índice como `key`, para evitar problemas de reconciliación cuando la lista se modifica o reordena.
 
+---
+
+## 9 — Buscador con lupa y filtro
+ - Commit: "9 Buscador con lupa y filtro"
+ - Fecha: 2025-10-21
+ - Archivos modificados: `src/TodoSearch.js`, `src/TodoSearch.css`, `src/App.js`
+ - Resumen: En este video se implementó un buscador centrado y estilizado tipo Google, con una lupa SVG dentro del input. El buscador filtra la lista de tareas en tiempo real según el texto ingresado, mostrando solo las coincidencias. Se mejoró la experiencia visual y de usuario.
+
+Explicación didáctica (breve):
+- El input de búsqueda se centra en la página y se le da un estilo moderno: fondo blanco, bordes redondeados, sombra suave y padding generoso.
+- Se añadió una lupa SVG dentro del input, alineada a la izquierda, para reforzar el aspecto de buscador profesional.
+- El filtro se realiza en tiempo real: al escribir, la lista de tareas se actualiza mostrando solo aquellas cuyo texto incluye el valor buscado (ignorando mayúsculas/minúsculas).
+- El componente `TodoSearch` maneja el input y los estilos; el filtrado se realiza en `App.js` usando `searchedTodos`.
+
+Cambios técnicos realizados:
+- `src/TodoSearch.js`: se añadió la estructura para la lupa y el input, y se ajustó el layout.
+- `src/TodoSearch.css`: se agregaron estilos para centrar el input, darle aspecto Google y posicionar la lupa SVG.
+- `src/App.js`: se implementó el filtrado de tareas usando el valor de búsqueda.
+
+Beneficio:
+- UX más clara y atractiva, búsqueda instantánea y visual profesional.
+
 
 

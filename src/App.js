@@ -22,6 +22,12 @@ function App() {
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
 
+  const searchedTodos = todos.filter(todo => {
+    const todoText = todo.text.toLowerCase();
+    const searchText = searchValue.toLowerCase();
+    return todoText.includes(searchText);
+  });
+
   const toggleTodo = (index) => {
     const newTodos = [...todos];
     if (newTodos[index]) {
@@ -48,16 +54,20 @@ function App() {
       setSearchValue={setSearchValue}
       />
       <TodoList>  
-        {todos.map((todo, index) => (
-          <TodoItem
-           key={index}
-           text={todo.text}
-           completed={todo.completed}
-           onToggle={() => toggleTodo(index)}
-           onDelete={() => deleteTodo(index)}
-         />
-       ))}
-     </TodoList>
+        {searchedTodos.map((todo, index) => {
+          // obtener el índice real en el array original para toggle/delete
+          const realIndex = todos.indexOf(todo);
+          return (
+            <TodoItem
+              key={realIndex}
+              text={todo.text}
+              completed={todo.completed}
+              onToggle={() => toggleTodo(realIndex)}
+              onDelete={() => deleteTodo(realIndex)}
+            />
+          );
+        })}
+      </TodoList>
 
       {<CreateTodoButton />}
     </>
