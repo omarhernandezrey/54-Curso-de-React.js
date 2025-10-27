@@ -139,6 +139,42 @@ Cambios técnicos realizados:
 Notas:
 - Actualmente la app usa índices como claves para los elementos (`key={index}`) para mantener compatibilidad con el material del curso; en aplicaciones reales se recomienda usar ids únicos.
 
+---
+
+## 11 — Iconos en React: librerías y SVG
+ - Commit: "11 Iconos en React: librerías y SVG"
+ - Fecha: 2025-10-27
+ - Archivos modificados: `package.json`, `src/TodoItem.js`, `src/TodoSearch.js`, `src/CreateTodoButton.js`, `src/TodoSearch.css`
+ - Resumen: En este vídeo se explicó cómo trabajar con iconos en React: opciones (usar SVG inline, caracteres, o librerías como `react-icons`) y se modernizó la UI del proyecto integrando `react-icons` para tener iconos consistentes y accesibles.
+
+Explicación didáctica (breve):
+- Opciones para iconos en React:
+  - SVG inline: permite control total del vector y estilos, ideal para iconos únicos o personalizados.
+  - Caracteres/texto (✔, ○, X): solución simple sin dependencias, pero limitada en estilo y consistencia.
+  - Librerías (ej. `react-icons`, Font Awesome): empaquetan colecciones completas, fáciles de usar y cambiar tamaño/color desde React.
+- Por qué usamos `react-icons` en esta práctica: es ligera, permite importar solo los iconos que necesitás, mantiene la app sin dependencias pesadas y facilita la accesibilidad (atributos aria y titles).
+
+Qué se implementó en el proyecto:
+- Instalación: `npm install react-icons` y se agregó como dependencia en `package.json`.
+- `src/TodoItem.js`: reemplazamos los caracteres por iconos (`FiCircle`, `FiCheckCircle`, `FiTrash2`) y usamos botones accesibles con `aria-label` y `title`.
+- `src/TodoSearch.js`: reemplazamos el SVG inline por `FiSearch` de `react-icons` para consistencia.
+- `src/CreateTodoButton.js`: uso de `FiPlus` para el botón de crear tareas.
+
+Fragmento de ejemplo (uso de react-icons en un componente):
+
+```javascript
+import { FiSearch } from 'react-icons/fi';
+
+function Search() {
+  return <FiSearch size={18} color="#888" />;
+}
+```
+
+Notas y recomendaciones:
+- Mantener los iconos en componentes/archivos separados si se reutilizan mucho.
+- Para producción, optimizar importaciones (importar iconos puntuales) y preferir IDs únicos para listas que cambian dinámicamente.
+
+
 
 
 
