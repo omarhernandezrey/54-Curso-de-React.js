@@ -117,5 +117,28 @@ Captura de pantalla:
 ![Buscador centrado con lupa y filtro activo](./captura-buscador.png)
 Así se ve el buscador centrado, con lupa y filtrando tareas en tiempo real.
 
+---
+
+## 10 — Completando y eliminando TODOs
+ - Commit: "10 Completando y eliminando TODOs"
+ - Fecha: 2025-10-27
+ - Archivos modificados: `src/App.js`, `src/TodoItem.js`, `src/TodoList.js`
+ - Resumen: En esta entrada se añadió la funcionalidad para completar (marcar/desmarcar) y eliminar tareas desde la interfaz. Se actualizó la lógica para mantener el array de `todos` en el estado del componente `App` y se pasaron callbacks a `TodoItem` para que el usuario pueda interactuar con cada tarea.
+
+Explicación didáctica (breve):
+- Estado de la lista: `App` mantiene `todos` en `useState(defaultTodos)` para poder modificar la lista en respuesta a eventos de usuario.
+- Completar tareas: `TodoItem` llama a `props.onComplete` al hacer click en el check; `App` implementa `toggleTodo(index)` que alterna `completed` en el todo correspondiente.
+- Eliminar tareas: `TodoItem` llama a `props.onDelete` al hacer click en la X; `App` implementa `deleteTodo(index)` que elimina el elemento del array.
+- Conteo actualizado: `TodoCounter` muestra el número de tareas completadas calculado a partir del estado (`todos.filter(t => t.completed).length`), por lo que se actualiza automáticamente cuando se completan/eliminan tareas.
+
+Cambios técnicos realizados:
+- `src/App.js`: se añadieron `toggleTodo` y `deleteTodo` (basados en índice) y el render pasó `onComplete` y `onDelete` a cada `TodoItem`.
+- `src/TodoItem.js`: se añadieron handlers que llaman a `props.onComplete` y `props.onDelete` y se aplicó `cursor: pointer` para mejorar la UX.
+- `src/TodoList.js`: se conserva la estructura de la lista; el filtrado y mapeo se hace desde `App`.
+
+Notas:
+- Actualmente la app usa índices como claves para los elementos (`key={index}`) para mantener compatibilidad con el material del curso; en aplicaciones reales se recomienda usar ids únicos.
+
+
 
 
