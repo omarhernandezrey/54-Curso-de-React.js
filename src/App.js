@@ -40,9 +40,8 @@ function App() {
     const newTodos = todos.filter((_, i) => i !== index);
     setTodos(newTodos);
   };
+  
 
-
-  console.log('Los usuarios buscan todos de ' + searchValue);
   return (
     <>
       <TodoCounter 
@@ -62,7 +61,7 @@ function App() {
               key={realIndex}
               text={todo.text}
               completed={todo.completed}
-              onToggle={() => toggleTodo(realIndex)}
+              onComplete={() => toggleTodo(realIndex)}
               onDelete={() => deleteTodo(realIndex)}
             />
           );
