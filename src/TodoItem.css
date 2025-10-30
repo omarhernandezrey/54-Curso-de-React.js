@@ -25,6 +25,7 @@
 	color: var(--muted, #98a0b3);
 	font-weight:700;
 	cursor:pointer;
+	transition: transform .14s, box-shadow .14s, background .12s, color .12s;
 }
 
 .Icon-check--active{
@@ -51,15 +52,55 @@
 .TodoItem-p{ color: #ffffff }
 
 .Icon-delete{
-	color: var(--danger, #ef4444);
+	/* Por defecto (no completado): tenue / muted */
+	color: var(--muted, #98a0b3);
 	padding:6px 8px;
 	border-radius:8px;
 	cursor:pointer;
 	transition: background .12s;
 }
 .Icon-delete:hover{
+	/* hover tenue cuando no está completado */
+	background: rgba(255,255,255,0.03);
+}
+
+/* Cuando el item está marcado como completado, mostrar el ícono eliminar en rojo */
+.TodoItem--complete .Icon-delete{
+	color: var(--danger, #ef4444);
+}
+.TodoItem--complete .Icon-delete:hover{
 	background: rgba(239,68,68,0.06);
 }
 
 .TodoItem--complete .Icon{ opacity: 0.7 }
+
+
+/* Ensure SVG icons inherit color from their container and support stroke/fill coloring */
+.Icon-svg{
+	display: block;
+	width: 1em;
+	height: 1em;
+	color: inherit; /* react-icons use currentColor, this ensures they inherit the parent's color */
+}
+
+/* Some icon sets use stroke/fill - force them to use currentColor when possible */
+.Icon-svg svg{
+	stroke: currentColor;
+	fill: currentColor;
+}
+
+/* Preview: cuando el usuario pasa el mouse sobre un todo NO completado,
+	 mostramos visualmente cómo quedaría si se completara (estado preview). */
+.TodoItem:not(.TodoItem--complete):hover .Icon-check{
+		background: linear-gradient(135deg,#16a34a,#10b981); /* same as active */
+		color: #fff;
+		box-shadow: 0 10px 30px rgba(16,185,129,0.12);
+		border-color: transparent;
+}
+
+.TodoItem:not(.TodoItem--complete):hover .Icon-delete{
+		/* mostrar rojo como preview para indicar que al completarlo el delete quedaría rojo */
+		color: var(--danger, #ef4444);
+		background: rgba(239,68,68,0.06);
+}
 

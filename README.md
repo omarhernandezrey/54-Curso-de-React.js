@@ -174,6 +174,50 @@ Notas y recomendaciones:
 - Mantener los iconos en componentes/archivos separados si se reutilizan mucho.
 - Para producción, optimizar importaciones (importar iconos puntuales) y preferir IDs únicos para listas que cambian dinámicamente.
 
+## 12 — Iconos con colores dinámicos
+- Commit: "12 Iconos con colores dinámicos"
+- Fecha: 2025-10-30
+- Archivos modificados:
+  - `src/TodoItem.js` (uso de `IconButton` y manejo accesible de botones)
+  - `src/IconButton.js` (nuevo componente reutilizable que asegura que los iconos reciban la clase `Icon-svg`)
+  - `src/TodoItem.css` (estilos para `.Icon-svg`, estado activo, preview en hover y reglas para icono eliminar)
+
+Resumen de la clase:
+
+En esta clase se implementó la lógica para que los iconos SVG en los botones (check y delete) se coloreen dinámicamente según el estado de la tarea, y además muestren una vista previa al pasar el cursor sobre tareas no completadas.
+
+- Los iconos ahora heredan `color` desde su contenedor gracias a la clase `Icon-svg` y a las reglas CSS `stroke: currentColor` y `fill: currentColor`.
+- Se creó `IconButton` (nuevo componente) que clona el icono hijo para añadirle `Icon-svg` y centralizar la estructura del botón, manteniendo `aria-label` y `title` para accesibilidad.
+- Estilos y comportamiento:
+  - `.Icon-delete` aparece tenue (muted) por defecto cuando la tarea NO está completada.
+  - Cuando la tarea tiene la clase `.TodoItem--complete`, `.Icon-delete` se muestra en rojo (`--danger`).
+  - Al pasar el cursor sobre un `TodoItem` no completado, se aplica un preview visual: el botón de check muestra el estilo activo (fondo verde e icono blanco) y el delete se colorea de rojo tenue. Esto comunica al usuario el resultado esperado si completase la tarea.
+  - Se añadieron transiciones suaves en `.Icon` para animar cambios de color y fondo.
+
+Cómo probar localmente:
+
+1. Instalar dependencias (si hace falta):
+
+```bash
+npm install
+```
+
+2. Iniciar la app en modo desarrollo:
+
+```bash
+npm start
+```
+
+3. Validación visual:
+- Pasa el cursor sobre una tarea NO completada: deberías ver el preview — check con fondo verde y delete en rojo tenue.
+- Marca una tarea como completada: el check mantiene el estilo activo y el delete aparece en rojo.
+
+Notas técnicas:
+- Se usa la librería `react-icons` (colección `fi`) y se fuerza el uso de `currentColor` para que los iconos hereden estilos desde CSS.
+- El cambio se realizó sin añadir lógica JS extra para el preview; se usa solo CSS con selectores (`:not(.TodoItem--complete):hover`) para mantener la implementación simple y performante.
+
+Si quieres, puedo agregar capturas o una historia en Storybook para documentar visualmente estos estados.
+
 
 
 
