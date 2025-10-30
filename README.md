@@ -218,6 +218,46 @@ Notas técnicas:
 
 Si quieres, puedo agregar capturas o una historia en Storybook para documentar visualmente estos estados.
 
+## 13 — Local Storage con React.js
+- Commit: "13 Local Storage con React.js"
+- Fecha: 2025-10-30
+- Archivos modificados:
+  - `src/App.js` (carga y persistencia de `todos` en localStorage, `saveTodos` helper)
+
+Resumen de la clase:
+
+En esta clase se implementó la persistencia de la lista de tareas utilizando el API `localStorage` del navegador. Los puntos clave son:
+
+- Carga inicial: al iniciar la app se intenta leer `TODOS_V1` desde `localStorage` y se parsea JSON; si no existe o ocurre un error se usa un arreglo vacío como fallback.
+- Persistencia: cada modificación de la lista (completar, eliminar, crear) ahora se escribe en `localStorage` en formato JSON para que los cambios sobrevivan a recargas del navegador.
+- Helper `saveTodos`: se centralizó la lógica para guardar en `localStorage` y actualizar el estado con una función `saveTodos(newTodos)` que escribe primero en `localStorage` y luego llama a `setTodos(newTodos)`.
+- Manejo de errores: se añadieron try/catch alrededor del parseado y guardado para evitar que errores en localStorage rompan la app y para loguear advertencias en consola.
+
+Por qué se hizo así:
+- Mantener la persistencia en un helper evita repetición y reduce la probabilidad de inconsistencias entre estado y almacenamiento.
+- Evitar escribir lógica compleja en `useEffect` mantiene los flujos de cambio explícitos (llamas a `saveTodos` cuando quieres cambiar la lista).
+
+Cómo probar localmente:
+
+1. Asegúrate de tener la app corriendo:
+
+```bash
+npm install
+npm start
+```
+
+2. Acciones a probar:
+- Crea una nueva tarea y recarga la página — la tarea debe permanecer.
+- Marca una tarea como completada o elimínala y recarga; el estado debe conservarse.
+
+Notas y consideraciones futuras:
+- Actualmente se usan índices como claves (`key={index}`) y para identificar elementos al togglear/eliminar; es recomendable asignar IDs únicos a cada todo (por ejemplo con `Date.now()` o `uuid`) para evitar problemas de reconciliación React al modificar la lista.
+- Si la app crece, podrías abstraer la persistencia a un hook personalizado `useLocalStorage` para reutilizar en otros datos.
+- Para soporte multi-dispositivo o sincronización remota, reemplazar `localStorage` por un backend o sincronización con un servicio sería el siguiente paso.
+
+Commit y push:
+- Ya se agruparán y enviarán los cambios con el commit "13 Local Storage con React.js".
+
 
 
 
