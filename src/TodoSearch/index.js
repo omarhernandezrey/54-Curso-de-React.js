@@ -1,19 +1,20 @@
 import React from 'react';
-import './TodoSearch.css';
 import { FiSearch } from 'react-icons/fi';
+import './TodoSearch.css';
 
-function TodoSearch({ 
-  searchValue, 
-  setSearchValue 
+function TodoSearch({
+  searchValue,
+  setSearchValue,
 }) {
   return (
     <div className="TodoSearch-container">
       <div className="TodoSearch-wrapper">
-        <span className="TodoSearch-icon">
-          <FiSearch size={18} color="#888" />
+        <span className="TodoSearch-icon" aria-hidden>
+          <FiSearch className="Icon-svg" />
         </span>
         <input
-          placeholder="Buscar en tus tareas..."
+          type="search"
+          placeholder="Buscar tareas..."
           className="TodoSearch"
           value={searchValue}
           onChange={(event) => {

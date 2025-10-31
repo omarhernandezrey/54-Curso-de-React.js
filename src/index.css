@@ -1,13 +1,83 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Global styles for the app (minimal) */
+:root{
+  --bg: #071322;
+  --text: #e6eef8;
+  --muted: #98a0b3;
+  --danger: #ef4444;
+  --success: #10b981;
+  --glass: rgba(255,255,255,0.02);
+  --primary-start: #7c3aed;
+  --primary-end: #06b6d4;
+}
+html,body,#root{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Make sizing predictable and avoid unexpected overflow */
+*,*::before,*::after{ box-sizing: border-box; }
+
+/* Prevent accidental horizontal scroll — safer than letting components overflow */
+html,body{ overflow-x: hidden; }
+
+/* Utility */
+.hidden{ display:none; }
+
+/* App layout */
+.AppContainer{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:18px 12px; /* mobile-first smaller padding */
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent), radial-gradient(800px 400px at 90% 90%, rgba(6,182,212,0.08), transparent), var(--bg);
+}
+
+.AppContent{
+  width:100%;
+  max-width:840px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding: 0 12px; /* mobile-first */
+}
+
+@media (min-width: 600px){
+  .AppContainer{ padding:28px 20px; }
+  .AppContent{ gap:18px; padding: 0 24px; }
+}
+
+@media (min-width: 1024px){
+  .AppContainer{ padding:40px 40px; }
+  .AppContent{ gap:22px; padding: 0 32px; }
+}
+
+/* Card-like wrapper for sections */
+.Card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* Small helper to visually separate the list */
+.TodoListWrapper {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* give the tasks container slight side margin so content doesn't touch edges */
+.TodoListWrapper{
+  padding-inline:12px;
+}
+
+@media (max-width: 480px){
+  .TodoListWrapper{ padding-inline:8px; }
 }

@@ -1,0 +1,31 @@
+
+
+.Icon-container {
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  height: 36px;
+  width: 36px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Avoid absolute positioning inside icons; let parent layout decide placement */
+.Icon-container--check { color: var(--muted); }
+.Icon-container--check.is-active { color: var(--success); }
+.Icon-container--delete { color: var(--muted); }
+.Icon-container--delete:hover { color: var(--danger); }
+
+.Icon-svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  color: inherit;
+}
+
+/* Force SVG children to use currentColor for both stroke and fill when possible */
+.Icon-svg svg { stroke: currentColor; fill: currentColor; }
+
+@media (min-width: 800px){
+  .Icon-container{ height:40px; width:40px; font-size:20px; }
+}

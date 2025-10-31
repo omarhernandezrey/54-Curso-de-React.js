@@ -1,0 +1,24 @@
+.TodoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.TodoList-empty {
+  padding: 18px;
+  border-radius: 10px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.01);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Ensure long todo text wraps and list doesn't force horizontal scrolling */
+.TodoList, .TodoList .TodoItem {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}

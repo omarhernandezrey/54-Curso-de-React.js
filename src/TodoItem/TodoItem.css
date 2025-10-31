@@ -2,54 +2,54 @@
 .TodoItem{
 	display:flex;
 	align-items:center;
-	gap:14px;
-	padding:12px 16px;
+	gap:12px;
+	padding:10px 12px;
 	border-radius:12px;
 	background: var(--glass, rgba(255,255,255,0.02));
 	border: 1px solid rgba(255,255,255,0.03);
-	transition: transform .14s, box-shadow .14s;
+	transition: transform .12s ease, box-shadow .12s ease;
+	width:100%;
 }
 .TodoItem:hover{
-	transform: translateY(-6px);
-	box-shadow: 0 18px 40px rgba(2,6,23,0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(2,6,23,0.32);
 }
 
 .Icon{
-	width:42px;
-	height:42px;
+	width:36px;
+	height:36px;
 	display:grid;
 	place-items:center;
-	border-radius:10px;
-	background: rgba(255,255,255,0.015);
+	border-radius:9px;
+	background: rgba(255,255,255,0.012);
 	border: 1px solid rgba(255,255,255,0.03);
 	color: var(--muted, #98a0b3);
-	font-weight:700;
 	cursor:pointer;
-	transition: transform .14s, box-shadow .14s, background .12s, color .12s;
+	transition: transform .12s, box-shadow .12s, background .12s, color .12s;
+	flex: 0 0 auto;
 }
 
 .Icon-check--active{
-	background: linear-gradient(135deg,#16a34a,#10b981); /* green gradient */
+	background: linear-gradient(135deg,var(--success), #059669);
 	color: #fff;
-	box-shadow: 0 10px 30px rgba(16,185,129,0.12);
+	box-shadow: 0 8px 26px rgba(16,185,129,0.12);
 	border-color: transparent;
 }
 
 .TodoItem-p{
 	margin:0;
-	flex:1;
+	flex:1 1 auto;
+	min-width:0; /* allow flex item to shrink on small screens */
 	font-size:15px;
-	color: #e6eef8;
+	color: var(--text);
+	word-break:break-word;
 }
 
 .TodoItem-p--complete{
 	text-decoration: line-through;
 	opacity: 0.9;
-	color: var(--success, #10b981);
+	color: var(--muted);
 }
-
-/* Non-completed default color */
-.TodoItem-p{ color: #ffffff }
 
 .Icon-delete{
 	/* Por defecto (no completado): tenue / muted */
@@ -57,7 +57,7 @@
 	padding:6px 8px;
 	border-radius:8px;
 	cursor:pointer;
-	transition: background .12s;
+	transition: background .12s, color .12s;
 }
 .Icon-delete:hover{
 	/* hover tenue cuando no está completado */
@@ -72,7 +72,12 @@
 	background: rgba(239,68,68,0.06);
 }
 
-.TodoItem--complete .Icon{ opacity: 0.7 }
+.TodoItem--complete .Icon{ opacity: 0.85 }
+
+@media (min-width: 800px){
+	.Icon{ width:40px; height:40px; }
+	.TodoItem{ gap:14px; padding:12px 16px; }
+}
 
 
 /* Ensure SVG icons inherit color from their container and support stroke/fill coloring */

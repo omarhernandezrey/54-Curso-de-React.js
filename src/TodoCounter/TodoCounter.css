@@ -1,0 +1,37 @@
+.TodoCounter{
+  display:block;
+  padding:12px 14px;
+  border-radius:12px;
+  background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.02);
+  text-align: center;
+}
+
+/* Emphasize the numeric parts and keep the sentence on one line when possible */
+.TodoCounter span{
+  display:inline-block;
+  min-width:28px;
+  padding:4px 8px;
+  margin: 0 6px;
+  border-radius:8px;
+  background: rgba(255,255,255,0.02);
+  font-weight:700;
+}
+
+/* Sub text style if needed */
+.TodoCounter .sub{font-size:13px;color:var(--muted)}
+
+/* Heading style when using an h1 for the counter */
+h1.TodoCounter {
+  font-size: 18px;
+  line-height:1.2;
+  margin: 0;
+  padding: 18px 8px;
+  word-break: normal;
+  white-space: normal;
+}
+
+@media (max-width: 420px){
+  h1.TodoCounter{ font-size:16px; }
+  .TodoCounter span{ min-width:22px; padding:3px 6px; margin:0 4px; }
+}
