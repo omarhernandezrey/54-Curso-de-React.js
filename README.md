@@ -258,6 +258,53 @@ Notas y consideraciones futuras:
 Commit y push:
 - Ya se agruparán y enviarán los cambios con el commit "13 Local Storage con React.js".
 
+## 14 — Custom Hooks
+- Commit: "14 Custom Hooks"
+- Fecha: 2025-10-31
+- Archivos modificados:
+  - `src/App.js` (nuevo hook `useLocalStorage` implementado y usado por `App`)
+
+Resumen de la clase:
+
+En esta clase transformamos la lógica de persistencia en un custom hook para React, llamado `useLocalStorage`. El objetivo fue encapsular la carga/escritura en `localStorage`, manejo de errores y sincronización entre pestañas, y así mantener `App` más limpia y reutilizable.
+
+Puntos clave implementados:
+
+- `useLocalStorage(itemName, initialValue)`:
+  - Inicializa el estado leyendo desde `localStorage` (JSON.parse) o usando `initialValue` si no existe.
+  - Devuelve un par `[value, setValue]` donde `setValue` guarda el nuevo valor en `localStorage` (JSON.stringify) y actualiza el estado.
+  - Escucha el evento `storage` para sincronizar cambios hechos desde otras pestañas del navegador.
+  - Maneja errores de parseo/escritura con `try/catch` y `console.warn`.
+
+- Refactor en `App`:
+  - Se reemplazó la lógica de carga/guardado por `const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);`.
+  - Las operaciones de completar y eliminar tareas ahora llaman a `saveTodos(newTodos)` para persistir y actualizar el estado.
+
+Beneficios:
+- Código más modular y reusable: el hook puede moverse a `src/hooks/useLocalStorage.js` y usarse en otras partes de la app.
+- Mejora la separación de responsabilidades: `App` se enfoca en la UI y las acciones de negocio, mientras que el hook se encarga del almacenamiento.
+
+Cómo probar:
+
+1. Instala y corre la app:
+
+```bash
+npm install
+npm start
+```
+
+2. Acciónes para validar:
+- Crear/Completar/Eliminar tareas y recargar la página: los cambios deben persistir.
+- Abrir otra pestaña en la misma app y modificar tareas: la pestaña original debería sincronizar los cambios (evento `storage`).
+
+Notas y siguientes pasos recomendados:
+- Extraer `useLocalStorage` a `src/hooks/useLocalStorage.js` para limpieza del proyecto.
+- Usar IDs únicos para los todos (por ejemplo `Date.now()` o `uuid`) y así evitar usar `text` como clave/identificador.
+- Añadir tests unitarios para el hook (mockeando localStorage) y para las funciones de `App`.
+
+Commit y push:
+- Voy a agrupar los cambios y hacer commit con el mensaje exacto: "14 Custom Hooks" y luego empujar a `origin/main`.
+
 
 
 

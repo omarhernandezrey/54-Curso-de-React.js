@@ -4,100 +4,99 @@ import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
-import './App.css';
 
+// const defaultTodos = [
+//   { text: 'Cortar cebolla', completed: true },
+//   { text: 'Tomar el Curso de Intro a React.js', completed: false },
+//   { text: 'Llorar con la Llorona', completed: false },
+//   { text: 'LALALALALA', completed: false },
+//   { text: 'Usar estados derivados', completed: true },
+// ];
 
-/*
-const defaultTodos = [
-  { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar el Curso de Intro a React.js', completed: false },
-  { text: 'Llorar con la Llorona', completed: true },
-  { text: 'LALALALALA', completed: false },
-  { text: 'Usar estados deriva', completed: false },
-];
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+// localStorage.removeItem('TODOS_V1');
 
-localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-localStorage.removeItem('TODOS_V1');
-*/
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
 
+  let parsedItem;
+  
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
+  } else {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  return [item, saveItem];
+}
 
 function App() {
-  // Cargar todos desde localStorage (si existe) -> parse JSON, fallback a []
-  const loadTodos = () => {
-    try {
-      const raw = localStorage.getItem('TODOS_V1');
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      console.warn('Error parsing TODOS_V1 from localStorage', e);
-      return [];
-    }
-  };
-
-  const [todos, setTodos] = React.useState(() => loadTodos());
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
-  const completedTodos = todos.filter(todo => todo.completed).length;
+  const completedTodos = todos.filter(
+    todo => !!todo.completed
+  ).length;
   const totalTodos = todos.length;
 
-  const searchedTodos = todos.filter(todo => {
-    const todoText = todo.text.toLowerCase();
-    const searchText = searchValue.toLowerCase();
-    return todoText.includes(searchText);
-  });
-
-  const toggleTodo = (index) => {
-    const newTodos = [...todos];
-    if (newTodos[index]) {
-      newTodos[index] = { ...newTodos[index], completed: !newTodos[index].completed };
-      saveTodos(newTodos);
+  const searchedTodos = todos.filter(
+    (todo) => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
     }
+  );
+
+  const completeTodo = (text) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+    (todo) => todo.text === text
+    );
+    newTodos[todoIndex].completed = true;
+    saveTodos(newTodos);
   };
 
-  const deleteTodo = (index) => {
-    const newTodos = todos.filter((_, i) => i !== index);
+  const deleteTodo = (text) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+    (todo) => todo.text === text
+    );
+    newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
   
-  // helper para persistir y actualizar el estado
-  const saveTodos = (newTodos) => {
-    try {
-      localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-    } catch (e) {
-      console.warn('Error saving TODOS_V1 to localStorage', e);
-    }
-    setTodos(newTodos);
-  };
-  
-
   return (
     <>
-      <TodoCounter 
-      completed={completedTodos} 
-      total={totalTodos} />
-
-      <TodoSearch 
-      searchValue={searchValue}
-      setSearchValue={setSearchValue}
+      <TodoCounter
+        completed={completedTodos}
+        total={totalTodos} 
       />
-      <TodoList>  
-        {searchedTodos.map((todo, index) => {
-          // obtener el índice real en el array original para toggle/delete
-          const realIndex = todos.indexOf(todo);
-          return (
-            <TodoItem
-              key={realIndex}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => toggleTodo(realIndex)}
-              onDelete={() => deleteTodo(realIndex)}
-            />
-          );
-        })}
-      </TodoList>
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
-      {<CreateTodoButton />}
+      <TodoList>
+        {searchedTodos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
+      </TodoList>
+      
+      <CreateTodoButton />
     </>
   );
 }
