@@ -369,3 +369,39 @@ Notas finales:
 - Esta estructura es una recomendación, no una regla absoluta. Ajusta según el tamaño y evolución del proyecto.
 - He aplicado una explicación y recomendaciones aquí para que sirva de guía al avanzar con la TODO Machine.
 
+
+## 19 — Estados de carga y error
+
+Resumen breve:
+
+En interfaces reales es crítico manejar los estados de carga (loading), error y vacío (empty). En la TODO Machine implementamos estos tres estados para mejorar la UX y guiar al usuario:
+
+- Loading: mientras se obtienen los datos (o se simula una carga), mostramos placeholders o animaciones para indicar que algo está ocurriendo.
+- Error: cuando ocurre un fallo (p. ej. al leer `localStorage` o al realizar una petición), mostramos un mensaje claro y una acción sugerida (recargar, reintentar).
+- Empty: cuando no hay tareas, mostramos una pantalla amigable que invite a crear la primera tarea.
+
+Cómo lo implementamos en este repo:
+
+1. `useLocalStorage` devuelve `loading` y `error` además del `item` y `saveItem`. Estos flags controlan la UI desde `AppUI`.
+2. Componentes dedicados:
+   - `TodosLoading` — placeholder/animación durante carga.
+   - `TodosError` — mensaje amigable y role="alert" para accesibilidad.
+   - `EmptyTodos` — invitación a crear la primera tarea.
+3. `AppUI` usa esas banderas para renderizar el estado apropiado:
+   - `loading && <TodosLoading />...`
+   - `error && <TodosError />`
+   - `!loading && searchedTodos.length === 0 && <EmptyTodos />`
+
+Buenas prácticas y consideraciones:
+- Mantener los componentes de estado simples y accesibles (usando `role="status"`, `aria-busy`, o `role="alert"` según corresponda).
+- Evitar bloquear la UI completa por un error leve: ofrecer acciones recuperables (botón reintentar) cuando aplique.
+- Para cargas largas, mostrar skeletons en lugar de spinners mejora la percepción de velocidad.
+
+Prueba rápida local:
+
+1. Forzar carga: en `useLocalStorage` ajusta el timeout o el return para simular `loading` y observa `TodosLoading`.
+2. Forzar error: en `useLocalStorage` lanza un error dentro del try/catch para ver `TodosError`.
+3. Empty: borra `TODOS_V1` en localStorage y recarga para ver `EmptyTodos`.
+
+Con esto completamos la sección sobre estados de carga y error y dejamos la app preparada para mejorar la experiencia del usuario.
+
