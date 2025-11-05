@@ -4,7 +4,7 @@ import './TodoItem.css';
 
 function TodoItem(props) {
   return (
-    <li className="TodoItem">
+    <li className={props.completed ? 'TodoItem TodoItem--complete' : 'TodoItem'}>
       <CompleteIcon
         completed={props.completed}
         onComplete={props.onComplete}
@@ -16,6 +16,7 @@ function TodoItem(props) {
 
       <DeleteIcon
         onDelete={props.onDelete}
+        completed={props.completed}
       />
     </li>
   );

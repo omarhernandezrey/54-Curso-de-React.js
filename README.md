@@ -309,3 +309,63 @@ Commit y push:
 
 
 
+
+## 16 — Feature-First Directories en React
+
+Explicación breve:
+
+La estrategia "Feature-First" (o "Vertical Slice") organiza el código por características/funcionalidades en lugar de por tipo (components, styles, hooks, etc.). Cada carpeta de feature contiene todo lo necesario para esa funcionalidad: componentes, estilos, hooks, pruebas y utilidades relacionadas. Esto mejora la mantenibilidad y facilita el trabajo en equipos porque los cambios relacionados con una funcionalidad suelen estar en un único lugar.
+
+Por qué usarlo en este proyecto:
+- Facilita agrupar todo lo relacionado con la TODO Machine en un solo sitio (componentes, estilos y lógica de estado/persistencia).
+- Escala mejor cuando la app crece: en lugar de tener muchas carpetas planas (`src/components`, `src/styles`, `src/hooks`), se agrupan los artefactos por feature.
+- Mejora la visibilidad para nuevos colaboradores: verán la funcionalidad completa en una carpeta en lugar de buscar entre muchas carpetas.
+
+Ejemplo de estructura recomendada (para este repo):
+
+```
+src/
+  features/
+    todos/
+      components/
+        TodoList/
+          index.js
+          TodoList.css
+        TodoItem/
+          index.js
+          TodoItem.css
+        TodoSearch/
+          index.js
+          TodoSearch.css
+      hooks/
+        useTodos.js
+      services/
+        index.js
+      tests/
+        index.test.js
+  shared/
+    ui/
+      Icon/
+        index.js
+        Icon.css
+    utils/
+      localStorage.js
+  App/
+    AppUI.js
+    index.js
+```
+
+Pasos simples para migrar (sugerencia):
+1. Crear `src/features/todos/` y mover `src/TodoList`, `src/TodoItem`, `src/TodoSearch`, `src/TodoIcon` (o sus partes) dentro de `features/todos/components`.
+2. Mantener `shared/` para utilidades y componentes reutilizables (p. ej. iconos, hooks genéricos, helpers de localStorage).
+3. Actualizar imports relativos y probar la app.
+4. Refactorizar incrementalmente: mover una feature por commit para facilitar la revisión.
+
+Consideraciones y trade-offs:
+- Pros: mejor encapsulación por feature, más intuitivo en equipos grandes, cambios localizados.
+- Contras: para proyectos muy pequeños puede parecer más verboso; requiere renombrar imports al migrar.
+
+Notas finales:
+- Esta estructura es una recomendación, no una regla absoluta. Ajusta según el tamaño y evolución del proyecto.
+- He aplicado una explicación y recomendaciones aquí para que sirva de guía al avanzar con la TODO Machine.
+

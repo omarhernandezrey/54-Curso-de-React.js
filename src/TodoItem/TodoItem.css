@@ -64,6 +64,26 @@
 	background: rgba(255,255,255,0.03);
 }
 
+/* Clase utilitaria para forzar el color de peligro en el icono delete
+	 Se usa cuando la tarea está completada para asegurar que el ícono
+	 aparezca en rojo sin depender únicamente de selectores de ancestros. */
+.Icon-delete--danger{
+	color: var(--danger, #ef4444);
+}
+.Icon-delete--danger:hover{
+	background: rgba(239,68,68,0.06);
+}
+
+/* Reglas más específicas para asegurar que el color se aplique
+	 aunque otras hojas de estilo definan `.Icon` o `.Icon-container--delete`.
+	 Usamos la combinación de clases para aumentar especificidad sin !important. */
+.Icon.Icon-delete--danger{
+	color: var(--danger, #ef4444);
+}
+.Icon.Icon-delete--danger:hover{
+	background: rgba(239,68,68,0.06);
+}
+
 /* Cuando el item está marcado como completado, mostrar el ícono eliminar en rojo */
 .TodoItem--complete .Icon-delete{
 	color: var(--danger, #ef4444);
