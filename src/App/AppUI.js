@@ -18,19 +18,6 @@ function AppUI({
   completeTodo,
   deleteTodo,
 }) {
-  // Debug: log imported component types to detect undefined exports
-  // (remove this after debugging)
-  // eslint-disable-next-line no-console
-  console.log('component types:', {
-    TodoCounterType: typeof TodoCounter,
-    TodoSearchType: typeof TodoSearch,
-    TodoListType: typeof TodoList,
-    TodoItemType: typeof TodoItem,
-    TodosLoadingType: typeof TodosLoading,
-    TodosErrorType: typeof TodosError,
-    EmptyTodosType: typeof EmptyTodos,
-    CreateTodoButtonType: typeof CreateTodoButton,
-  });
   return (
     <>
       <TodoCounter
