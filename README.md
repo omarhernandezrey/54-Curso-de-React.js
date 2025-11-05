@@ -406,3 +406,77 @@ Prueba rápida local:
 Con esto completamos la sección sobre estados de carga y error y dejamos la app preparada para mejorar la experiencia del usuario.
 
 \n## 20 — Actualizando estados desde useEffect\n\nResumen breve:\n\nEn React es común sincronizar o inicializar estados a partir de efectos secundarios (fetch de datos, lectura de localStorage, suscripciones). \ es la API que nos permite ejecutar lógica después del render y actualizar el estado de forma segura.\n\nPatrón típico:\n\n1. Declarar estado con \.\n2. Dentro de \ realizar la operación asíncrona (fetch, lectura, suscripción).\n3. Llamar al setter del estado (p. ej. \) con los datos obtenidos.\n4. Manejar limpieza si el efecto crea listeners o timers (retornar una función de cleanup).\n\nEjemplo breve (pseudo-código):\n\n`javascript\nconst [items, setItems] = useState([]);\nconst [loading, setLoading] = useState(true);\nconst [error, setError] = useState(null);\n\nuseEffect(() => {\n  let mounted = true; // evitar actualizar estado tras unmount\n\  async function load() {\n    try {\n      const res = await fetch('/api/items');\n      const data = await res.json();\n      if (mounted) setItems(data);\n    } catch (e) {\n      if (mounted) setError(e);\n    } finally {\n      if (mounted) setLoading(false);\n    }\n  }\n\n  load();\n\n  return () => { mounted = false; };\n}, []); // [] para ejecutarse solo al montar\n`\n\nConsejos y buenas prácticas:\n- Evitar actualizar estado cuando el componente ya se desmontó (usa un flag \ o \ para fetch).\n- Separar la lógica de efectos en funciones/ custom hooks para mantener componentes limpios (por ejemplo \ o \).\n- Incluir dependencias correctas en el array de dependencias de \ para evitar efectos desincronizados o loops infinitos.\n- Manejar estados \ y \ junto al resultado para dar feedback al usuario.\n\nCómo aplicamos esto en la TODO Machine:\n- \ usa \ para leer desde \ al montar y setear \, \ y \ según corresponda.\n- \ consume esos valores y los pasa a \ para renderizar \, \ o el listado de tareas.\n\nPrueba/depuración:\n- Inserta \ dentro de \ para confirmar el flujo de ejecución y los valores intermedios.\n- Usa herramientas de red (Network) y el panel React DevTools para verificar renders y estados.\n\nCon esto cerramos la explicación sobre cómo y por qué actualizamos estados desde \.\n
+## 21 — Reto: loading skeletons
+
+Resumen del reto:
+
+En lugar de mostrar spinners genéricos cuando la UI está cargando, el reto es implementar "loading skeletons": bloques y líneas grises animadas que imitan la estructura de la interfaz final. Los skeletons mejoran la percepción de velocidad y dan al usuario una idea de la maquetación que se va a mostrar.
+
+Objetivos:
+- Crear componentes skeleton reutilizables para la lista de TODOs.
+- Reemplazar temporalmente los placeholders/spinners por skeletons durante `loading`.
+- Mantener accesibilidad y rendimiento.
+
+Ideas de implementación (paso a paso):
+1. Crear un componente `TodoSkeleton` (o `SkeletonItem`) que renderice la estructura básica de un `TodoItem`: un círculo (check), una línea larga (texto) y un rectángulo pequeño (delete).
+2. Añadir una clase CSS `.skeleton` con un `background` en degradado lineal y una animación `@keyframes shimmer` que desplaza el brillo.
+3. Renderizar N instancias de `TodoSkeleton` cuando `loading === true` (por ejemplo 3-6 items según el diseño).
+4. Asegurarse de que los skeletons no sean elementos interactivos (usar `aria-hidden="true"`) para que lectores de pantalla no confundan el estado.
+
+Ejemplo de CSS (simplificado):
+
+```css
+.SkeletonItem{ display:flex; gap:12px; align-items:center; padding:10px; }
+.Skeleton-circle{ width:36px; height:36px; border-radius:50%; background:#e6e6e6; position:relative; overflow:hidden; }
+.Skeleton-line{ flex:1; height:14px; border-radius:8px; background:#e6e6e6; position:relative; overflow:hidden; }
+.Skeleton-small{ width:28px; height:14px; border-radius:6px; background:#e6e6e6; }
+
+/* shimmer */
+.Skeleton-circle::after,
+.Skeleton-line::after,
+.Skeleton-small::after{
+  content:''; position:absolute; inset:0 0 0 0; background:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%); transform:translateX(-100%); animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer{
+  100%{ transform:translateX(100%); }
+}
+```
+
+Ejemplo de JSX (simplificado):
+
+```jsx
+function TodoSkeleton(){
+  return (
+    <div className="SkeletonItem" aria-hidden="true">
+      <div className="Skeleton-circle" />
+      <div className="Skeleton-line" />
+      <div className="Skeleton-small" />
+    </div>
+  );
+}
+
+// Uso: renderizar varias instancias mientras loading
+{loading && Array.from({length:4}).map((_,i)=> <TodoSkeleton key={i} />)}
+```
+
+Puntos de accesibilidad y rendimiento:
+- Añade `aria-hidden="true"` a los skeletons para que los lectores de pantalla ignoren el contenido falso.
+- No ejecutes efectos costosos al renderizar skeletons; son puramente visuales.
+- Mantén la animación suave y con baja frecuencia para reducir uso de CPU en dispositivos móviles.
+
+Pruebas y validación:
+- Simula `loading` en `useLocalStorage` (o en `App`) para ver los skeletons en la UI.
+- Comprueba que al terminar la carga se reemplazan por datos reales sin parpadeos extra.
+- Usa Lighthouse/DevTools para revisar el impacto en rendimiento.
+
+Extensiones del reto (opcional):
+- Implementar skeletons más complejos (avatar + múltiples líneas de texto) para componentes más ricos.
+- Extraer un componente genérico `Skeleton` que reciba `width`, `height`, `radius` y lo reutilice en diferentes layouts.
+
+Si quieres, puedo:
+- Crear los archivos `src/Skeleton/TodoSkeleton.js` y `src/Skeleton/TodoSkeleton.css` con el ejemplo anterior.
+- Integrar los skeletons en `AppUI` (mostrar 3-4 mientras `loading`).
+
+Dime si quieres que implemente el reto completo y si debo commitear/pushear esos cambios o sólo generarlos localmente.
+
