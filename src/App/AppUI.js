@@ -2,9 +2,14 @@ import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
+import { TodosLoading } from '../TodosLoading';
+import { TodosError } from '../TodosError';
+import { EmptyTodos } from '../EmptyTodos';
 import { CreateTodoButton } from '../CreateTodoButton';
 
 function AppUI({
+  loading,
+  error,
   completedTodos,
   totalTodos,
   searchValue,
@@ -13,6 +18,19 @@ function AppUI({
   completeTodo,
   deleteTodo,
 }) {
+  // Debug: log imported component types to detect undefined exports
+  // (remove this after debugging)
+  // eslint-disable-next-line no-console
+  console.log('component types:', {
+    TodoCounterType: typeof TodoCounter,
+    TodoSearchType: typeof TodoSearch,
+    TodoListType: typeof TodoList,
+    TodoItemType: typeof TodoItem,
+    TodosLoadingType: typeof TodosLoading,
+    TodosErrorType: typeof TodosError,
+    EmptyTodosType: typeof EmptyTodos,
+    CreateTodoButtonType: typeof CreateTodoButton,
+  });
   return (
     <>
       <TodoCounter
@@ -25,6 +43,16 @@ function AppUI({
       />
 
       <TodoList>
+        {loading && (
+          <>
+            <TodosLoading />
+            <TodosLoading />
+            <TodosLoading />
+          </>
+        )}
+        {error && <TodosError/>}
+        {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
+
         {searchedTodos.map(todo => (
           <TodoItem
             key={todo.text}
