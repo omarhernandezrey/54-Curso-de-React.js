@@ -129,3 +129,54 @@
 		background: rgba(239,68,68,0.06);
 }
 
+/* Extra specific rules to ensure the delete SVG uses currentColor and that
+	 completed items show the delete icon in danger color with sufficient specificity */
+.TodoItem--complete .Icon.Icon-delete,
+.TodoItem--complete .Icon.Icon-delete .Icon-svg,
+.Icon.Icon-delete--danger,
+.Icon.Icon-delete--danger .Icon-svg {
+	color: var(--danger, #ef4444);
+}
+
+.TodoItem--complete .Icon.Icon-delete:hover,
+.Icon.Icon-delete--danger:hover,
+.TodoItem:not(.TodoItem--complete):hover .Icon.Icon-delete {
+	background: rgba(239,68,68,0.06);
+	color: var(--danger, #ef4444);
+}
+
+/* Force svg children to use currentColor for stroke/fill where needed */
+
+/* Ensure the svg element itself (with class Icon-svg) also picks up currentColor */
+.Icon.Icon-delete .Icon-svg,
+.Icon.Icon-delete .Icon-svg *{
+	stroke: currentColor !important;
+	fill: currentColor !important;
+}
+
+.Icon-delete .Icon-svg,
+.Icon-delete .Icon-svg *{
+	stroke: currentColor !important;
+	fill: currentColor !important;
+}
+
+.Icon.Icon-delete .Icon-svg svg{
+		stroke: currentColor !important;
+		fill: currentColor !important;
+}
+
+/* Also target any nested elements inside the SVG (paths, g, circle, etc.)
+	 Some exported SVGs include inline fills on child elements which block color inheritance;
+	 targeting all children with !important helps ensure the icon follows the parent's color. */
+.Icon.Icon-delete .Icon-svg svg *{
+	stroke: currentColor !important;
+	fill: currentColor !important;
+}
+
+/* Extra selectors to cover alternative class combinations */
+.Icon-delete .Icon-svg svg,
+.Icon-delete .Icon-svg svg *{
+	stroke: currentColor !important;
+	fill: currentColor !important;
+}
+
