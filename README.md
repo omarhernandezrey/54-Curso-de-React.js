@@ -125,8 +125,5 @@ Tareas sugeridas / mejoras (opcional)
 - Extraer `useLocalStorage` a `src/hooks/` y añadir tests unitarios.
 - Implementar skeletons reales (`src/Skeleton/`), añadir trap-focus en el modal, y mejorar accesibilidad del formulario.
 
-¿Quieres que actualice este README añadiendo fragmentos de código por sección, enlaces directos a cada archivo implementado o que lo divida en `docs/` con páginas por lección? Responde cuál formato prefieres y lo hago.
-Resumen de la clase:
 
-En esta clase se implementó la lógica para que los iconos SVG en los botones (check y delete) se coloreen dinámicamente según el estado de la tarea, y además muestren una vista previa al pasar el cursor sobre tareas no completadas.
 
