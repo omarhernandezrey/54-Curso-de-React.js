@@ -474,9 +474,4 @@ Extensiones del reto (opcional):
 - Implementar skeletons más complejos (avatar + múltiples líneas de texto) para componentes más ricos.
 - Extraer un componente genérico `Skeleton` que reciba `width`, `height`, `radius` y lo reutilice en diferentes layouts.
 
-Si quieres, puedo:
-- Crear los archivos `src/Skeleton/TodoSkeleton.js` y `src/Skeleton/TodoSkeleton.css` con el ejemplo anterior.
-- Integrar los skeletons en `AppUI` (mostrar 3-4 mientras `loading`).
-
-Dime si quieres que implemente el reto completo y si debo commitear/pushear esos cambios o sólo generarlos localmente.
 
