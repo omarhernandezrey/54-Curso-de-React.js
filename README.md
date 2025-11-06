@@ -49,9 +49,6 @@ Mantén las entradas cortas: 3–5 líneas por vídeo. Esta entrada ya está com
 - Resumen: Explicación breve sobre cómo los componentes se comunican mediante props y atributos: pasar datos desde padre a hijo a través de props, uso de atributos JSX, y ejemplo práctico con `TodoItem` recibiendo texto o estado desde el componente padre.
 
 ---
-
-## 5 — Estilos CSS en React
-
 ## 6 — Eventos en React: onClick, onChange
  - Commit: "6 Eventos en React: onClick, onChange"
  - Fecha: 2025-10-08
@@ -97,17 +94,10 @@ Consejo:
  - Commit: "9 Buscador con lupa y filtro"
  - Fecha: 2025-10-21
  - Archivos modificados: `src/TodoSearch.js`, `src/TodoSearch.css`, `src/App.js`
- - Resumen: En este video se implementó un buscador centrado y estilizado tipo Google, con una lupa SVG dentro del input. El buscador filtra la lista de tareas en tiempo real según el texto ingresado, mostrando solo las coincidencias. Se mejoró la experiencia visual y de usuario.
-
-Explicación didáctica (breve):
 - El input de búsqueda se centra en la página y se le da un estilo moderno: fondo blanco, bordes redondeados, sombra suave y padding generoso.
 - Se añadió una lupa SVG dentro del input, alineada a la izquierda, para reforzar el aspecto de buscador profesional.
-- El filtro se realiza en tiempo real: al escribir, la lista de tareas se actualiza mostrando solo aquellas cuyo texto incluye el valor buscado (ignorando mayúsculas/minúsculas).
-- El componente `TodoSearch` maneja el input y los estilos; el filtrado se realiza en `App.js` usando `searchedTodos`.
-
 Cambios técnicos realizados:
 - `src/TodoSearch.js`: se añadió la estructura para la lupa y el input, y se ajustó el layout.
-- `src/TodoSearch.css`: se agregaron estilos para centrar el input, darle aspecto Google y posicionar la lupa SVG.
 - `src/App.js`: se implementó el filtrado de tareas usando el valor de búsqueda.
 
 Beneficio:
@@ -115,9 +105,6 @@ Beneficio:
 
 Captura de pantalla:
 ![Buscador centrado con lupa y filtro activo](./captura-buscador.png)
-Así se ve el buscador centrado, con lupa y filtrando tareas en tiempo real.
-
----
 
 ## 10 — Completando y eliminando TODOs
  - Commit: "10 Completando y eliminando TODOs"
@@ -165,14 +152,8 @@ Fragmento de ejemplo (uso de react-icons en un componente):
 ```javascript
 import { FiSearch } from 'react-icons/fi';
 
-function Search() {
-  return <FiSearch size={18} color="#888" />;
-}
-```
 
 Notas y recomendaciones:
-- Mantener los iconos en componentes/archivos separados si se reutilizan mucho.
-- Para producción, optimizar importaciones (importar iconos puntuales) y preferir IDs únicos para listas que cambian dinámicamente.
 
 ## 12 — Iconos con colores dinámicos
 - Commit: "12 Iconos con colores dinámicos"
